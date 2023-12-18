@@ -5,13 +5,51 @@
 
 using namespace std;
 
-struct stats {
+struct stats 
+{
 	size_t comparison_count = 0;
 	size_t copy_count = 0;
 
 	friend stats operator+(const stats& left, const stats& right);
 };
 
+stats operator+(const stats& left, const stats& right) 
+{
+	stats stats;
+	stats.comparison_count = left.comparison_count + right.comparison_count;
+	stats.copy_count = left.copy_count + right.copy_count;
+	return stats;
+}
+
+vector<int> generate_sorted_vector(const int n) 
+{
+	vector<int> result;
+	for (int i = 0; i < n; ++i) 
+	{
+		result.push_back(i);
+	}
+	return result;
+}
+
+vector<int> generate_inverted_vector(const int n) 
+{
+	vector<int> result;
+	for (int i = n - 1; i >= 0; --i) 
+	{
+		result.push_back(i);
+	}
+	return result;
+}
+
+vector<int> generate_random_vector(const int n) 
+{
+	vector<int> result;
+	for (int i = 0; i < n; ++i) 
+	{
+		result.push_back(rand() % n);
+	}
+	return result;
+}
 
 stats bubble_sort(std::vector<int>& arr) 
 {
