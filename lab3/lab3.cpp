@@ -1,42 +1,76 @@
 ﻿#include <iostream>
 #include <vector>
+#include <random>
+#define SIZE 1000
+// SHESTERIKOV BORIS 6213: 0 2 2
+
+using namespace std;
 
 struct stats {
-    size_t comparison_count = 0;
-    size_t copy_count = 0;
+	size_t comparison_count = 0;
+	size_t copy_count = 0;
+
+	friend stats operator+(const stats& left, const stats& right);
 };
 
-void bubbleSort(std::vector<int>& arr, stats& statistics) {
-    size_t n = arr.size();
-    bool swapped;
-    for (size_t i = 0; i < n - 1; ++i) {
-        swapped = false;
-        for (size_t j = 0; j < n - i - 1; ++j) {
-            ++statistics.comparison_count;
-            if (arr[j] > arr[j + 1]) {
-                std::swap(arr[j], arr[j + 1]);
-                ++statistics.copy_count;
-                swapped = true;
-            }
-        }
 
-        if (!swapped) {
-            break;
-        }
-    }
+stats bubble_sort(std::vector<int>& arr) 
+{
+	stats stats;
+
+	size_t length = arr.size();
+	for (size_t i = 0; i < length - 1; i++) 
+	{
+		for (size_t j = 0; j < length - i - 1; j++) 
+		{
+			if (arr[j] > arr[j + 1]) 
+			{
+				swap(arr[j + 1], arr[j]);
+				stats.copy_count += 1;
+			}
+			stats.comparison_count++;
+		}
+	}
+	return stats;
 }
 
-int main() {
-    setlocale(LC_ALL, "Rus");
-    std::vector<int> array = { 64, 34, 25, 12, 22, 11, 90 };
-    stats statistics;
+stats quick_sort(std::vector<int>& arr, int left, int right) 
+{
+	stats stats;
+	int i = left, j = right;
+	int main_element = arr[left];
 
-    bubbleSort(array, statistics);
-    for (const auto& element : array) {
-        std::cout << element << " ";
-    }
-    std::cout << "Количество сравнений: " << statistics.comparison_count << "\n";
-    std::cout << "Количество копирований: " << statistics.copy_count << "\n";
+	while (i <= j) 
+	{
+		while (arr[i] < main_element) 
+		{
+			stats.comparison_count++;
+			i++;
+		}
+		while (arr[j] > main_element) 
+		{
+			stats.comparison_count++;
+			j--;
+		}
+		if (i <= j) 
+		{
+			swap(arr[i], arr[j]);
+			i++;
+			j--;
 
-    return 0;
+			stats.copy_count += 1;
+		}
+	}
+
+	if (left < j)
+		stats = stats + quick_sort(arr, left, j);
+	if (i < right)
+		stats = stats + quick_sort(arr, i, right);
+
+	return stats;
+}
+
+int main() 
+{
+	return 0;
 }
