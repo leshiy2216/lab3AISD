@@ -154,5 +154,126 @@ stats heap_sort(std::vector<int>& arr)
 
 int main() 
 {
+	vector<int> vector_testing1{ 0, 1, 553, 522, 4, 52, 8 };
+	vector<int> vector_testing2{ 0, 1, 553, 522, 4, 52, 8 };
+	vector<int> vector_testing3{ 0, 1, 553, 522, 4, 52, 8 };
+	bubble_sort(vector_testing1);
+	quick_sort(vector_testing2, 0, vector_testing2.size() - 1);
+	heap_sort(vector_testing3);
+
+	for (int i = 0; i < vector_testing1.size(); ++i) {
+		cout << vector_testing1[i] << " ";
+	}
+	cout << "\n";
+	for (int i = 0; i < vector_testing2.size(); ++i) {
+		cout << vector_testing2[i] << " ";
+	}
+	cout << "\n";
+	for (int i = 0; i < vector_testing3.size(); ++i) {
+		cout << vector_testing3[i] << " ";
+	}
+	cout << "\n";
+
+	vector<int> vector;
+	cout << "------SORTED ARRAY------" << endl;
+
+	size_t sum_copy = 0, sum_comparison = 0;
+	for (int i = 0; i < 100; ++i) {
+		vector = generate_sorted_vector(SIZE);
+		stats tmp;
+		tmp = bubble_sort(vector);
+		sum_copy += tmp.copy_count;
+		sum_comparison += tmp.comparison_count;
+	}
+	cout << "Sort: Bubble sort\nSize array: " << SIZE << "\nAverage copy count: " << sum_copy / 100
+		<< "\nAverage comprassion count: " << sum_comparison / 100 << endl << endl;
+
+	sum_copy = 0, sum_comparison = 0;
+	for (int i = 0; i < 100; ++i) {
+		srand(i);
+		vector = generate_sorted_vector(SIZE);
+		stats tmp = quick_sort(vector, 0, vector.size() - 1);
+		sum_copy += tmp.copy_count;
+		sum_comparison += tmp.comparison_count;
+	}
+	cout << "Sort: Quick sort\nSize array: " << SIZE << "\nAverage copy count: " << sum_copy / 100
+		<< "\nAverage comprassion count: " << sum_comparison / 100 << endl << endl;
+
+	sum_copy = 0, sum_comparison = 0;
+	for (int i = 0; i < 100; ++i) {
+		srand(i);
+		vector = generate_sorted_vector(SIZE);
+		stats tmp = heap_sort(vector);
+		sum_copy += tmp.copy_count;
+		sum_comparison += tmp.comparison_count;
+	}
+	cout << "Sort: Heap sort\nSize array: " << SIZE << "\nAverage copy count: " << sum_copy / 100
+		<< "\nAverage comprassion count: " << sum_comparison / 100 << endl << endl;
+
+
+	cout << "------INVERTED ARRAY------" << endl;
+
+	sum_copy = 0, sum_comparison = 0;
+	for (int i = 0; i < 100; ++i) {
+		vector = generate_inverted_vector(SIZE);
+		stats tmp = bubble_sort(vector);
+		sum_copy += tmp.copy_count;
+		sum_comparison += tmp.comparison_count;
+	}
+	cout << "Sort: Bubble\nSize array: " << SIZE << "\nAverage copy count: " << sum_copy / 100
+		<< "\nAverage comprassion count: " << sum_comparison / 100 << endl << endl;
+
+	sum_copy = 0, sum_comparison = 0;
+	for (int i = 0; i < 100; ++i) {
+		vector = generate_inverted_vector(SIZE);
+		stats tmp = quick_sort(vector, 0, vector.size() - 1);
+		sum_copy += tmp.copy_count;
+		sum_comparison += tmp.comparison_count;
+	}
+	cout << "Sort: Quick sort\nSize array: " << SIZE << "\nAverage copy count: " << sum_copy / 100
+		<< "\nAverage comprassion count: " << sum_comparison / 100 << endl << endl;
+
+	sum_copy = 0, sum_comparison = 0;
+	for (int i = 0; i < 100; ++i) {
+		vector = generate_inverted_vector(SIZE);
+		stats tmp = heap_sort(vector);
+		sum_copy += tmp.copy_count;
+		sum_comparison += tmp.comparison_count;
+	}
+	cout << "Sort: Heap sort\nSize array: " << SIZE << "\nAverage copy count: " << sum_copy / 100
+		<< "\nAverage comprassion count: " << sum_comparison / 100 << endl << endl;
+
+
+	cout << "------RANDOM ARRAY------" << endl;
+
+	sum_copy = 0, sum_comparison = 0;
+	for (int i = 0; i < 100; ++i) {
+		vector = generate_random_vector(SIZE);
+		stats tmp = bubble_sort(vector);
+		sum_copy += tmp.copy_count;
+		sum_comparison += tmp.comparison_count;
+	}
+	cout << "Sort: Bubble\nSize array: " << SIZE << "\nAverage copy count: " << sum_copy / 100
+		<< "\nAverage comprassion count: " << sum_comparison / 100 << endl << endl;
+
+	sum_copy = 0, sum_comparison = 0;
+	for (int i = 0; i < 100; ++i) {
+		vector = generate_random_vector(SIZE);
+		stats tmp = quick_sort(vector, 0, vector.size() - 1);
+		sum_copy += tmp.copy_count;
+		sum_comparison += tmp.comparison_count;
+	}
+	cout << "Sort: Quick sort\nSize array: " << SIZE << "\nAverage copy count: " << sum_copy / 100
+		<< "\nAverage comprassion count: " << sum_comparison / 100 << endl << endl;
+
+	sum_copy = 0, sum_comparison = 0;
+	for (int i = 0; i < 100; ++i) {
+		vector = generate_random_vector(SIZE);
+		stats tmp = heap_sort(vector);
+		sum_copy += tmp.copy_count;
+		sum_comparison += tmp.comparison_count;
+	}
+	cout << "Sort: Heap sort\nSize array: " << SIZE << "\nAverage copy count: " << sum_copy / 100
+		<< "\nAverage comprassion count: " << sum_comparison / 100 << endl << endl;
 	return 0;
 }

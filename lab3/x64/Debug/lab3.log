@@ -1,2 +1,8 @@
 ﻿  lab3.cpp
+E:\education\labaa\sort\lab3\lab3\lab3.cpp(133,22): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+E:\education\labaa\sort\lab3\lab3\lab3.cpp(140,11): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+E:\education\labaa\sort\lab3\lab3\lab3.cpp(161,56): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+E:\education\labaa\sort\lab3\lab3\lab3.cpp(195,51): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+E:\education\labaa\sort\lab3\lab3\lab3.cpp(229,51): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+E:\education\labaa\sort\lab3\lab3\lab3.cpp(262,51): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
   lab3.vcxproj -> E:\education\labaa\sort\lab3\x64\Debug\lab3.exe
