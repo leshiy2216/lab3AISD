@@ -2,7 +2,6 @@
 #include <vector>
 #include <random>
 #define SIZE 1000
-// SHESTERIKOV BORIS 6213: 0 2 2
 
 using namespace std;
 
@@ -66,6 +65,51 @@ stats quick_sort(std::vector<int>& arr, int left, int right)
 		stats = stats + quick_sort(arr, left, j);
 	if (i < right)
 		stats = stats + quick_sort(arr, i, right);
+
+	return stats;
+}
+
+void heapify(std::vector<int>& arr, int size, int i, stats& stats)
+{
+	size_t largest = i;
+
+	int left = 2 * i + 1;
+	int right = 2 * i + 2;
+
+	if (left < size && arr[left] > arr[largest]) 
+	{
+		largest = left;
+		stats.comparison_count++;
+	}
+
+	if (right < size && arr[right] > arr[largest]) 
+	{
+		largest = right;
+		stats.comparison_count++;
+	}
+
+	if (largest != i)
+	{
+		swap(arr[i], arr[largest]);
+		stats.copy_count += 1;
+		heapify(arr, size, largest, stats);
+	}
+}
+
+stats heap_sort(std::vector<int>& arr)
+{
+	stats stats;
+	int size = arr.size();
+
+	for (int i = size / 2 - 1; i >= 0; i--)
+		heapify(arr, size, i, stats);
+
+	for (int i = size - 1; i >= 0; i--)
+	{
+		swap(arr[0], arr[i]);
+		stats.copy_count += 1;
+		heapify(arr, i, 0, stats);
+	}
 
 	return stats;
 }
